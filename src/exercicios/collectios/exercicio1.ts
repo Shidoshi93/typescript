@@ -24,7 +24,7 @@ export const processarCores = (cores: Array<String>): cores => {
     }
 }
 
-const runInteractive = (): void => {
+const rodarInterativamente = (): void => {
     const entradas: Array<String> = new Array<String>();
     let contador: number = 0;
 
@@ -44,4 +44,4 @@ const runInteractive = (): void => {
     processarCores(entradas);
 }
 
-naoExucutaReadLineSeEhTeste(runInteractive);
+naoExucutaReadLineSeEhTeste(rodarInterativamente);
