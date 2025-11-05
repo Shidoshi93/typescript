@@ -9,7 +9,6 @@ const resultado: cores = {
 
 describe('Exercicio 1', () => {
     test(`Deve retornar ${resultado.coresOrdenadas}`, () => {
-        console.log("entrou no teste")
         expect(processarCores(esperado)).toEqual(resultado);
     })
 })
