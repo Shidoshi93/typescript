@@ -9,15 +9,15 @@ que ele digite via teclado 5 cores e deverá adicioná-las individualmente no Ar
 */
 
 export type cores = {
-    cores: Array<String>,
-    coresOrdenadas: Array<String>
+    cores: Array<string>,
+    coresOrdenadas: Array<string>
 }
 
-export const ordenarCores = (cores: Array<String>): Array<String> => {
+export const ordenarCores = (cores: Array<string>): Array<string> => {
     return [...cores].sort();
 }
 
-export const processarCores = (cores: Array<String>): cores => {
+export const processarCores = (cores: Array<string>): cores => {
     return {
         cores: cores,
         coresOrdenadas: ordenarCores(cores)
@@ -25,11 +25,11 @@ export const processarCores = (cores: Array<String>): cores => {
 }
 
 const rodarInterativamente = (): void => {
-    const entradas: Array<String> = new Array<String>();
+    const entradas: Array<string> = new Array<string>();
     let contador: number = 0;
 
     do {
-        const cor: String = question("Digite a cor: ");
+        const cor: string = question("Digite a cor: ");
 
         entradas.push(cor);
         contador++;

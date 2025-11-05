@@ -9,7 +9,7 @@ Caso o número não seja encontrado, o programa deverá exibir na tela a mensage
 */
 
 export const procuraNumeroNoSet = (numero: number, numeros: Array<number>) => {
-    let mensagem: String = "";
+    let mensagem: string = "";
 
     mensagem = numeros.includes(numero) ?
         `Índice do número ${numero} é ${numeros.indexOf(numero)}` :
