@@ -1,7 +1,7 @@
 import type { cores } from "../exercicio1.ts";
 import { processarCores } from '../exercicio1.ts';
 
-const esperado: Array<String> = ['branco', 'rosa', 'verde', 'laranja', 'preto'];
+const esperado: Array<string> = ['branco', 'rosa', 'verde', 'laranja', 'preto'];
 const resultado: cores = {
     "cores": ["branco", "rosa", "verde", "laranja", "preto"], 
     "coresOrdenadas": ["branco", "laranja", "preto", "rosa", "verde"]
@@ -9,7 +9,6 @@ const resultado: cores = {
 
 describe('Exercicio 1', () => {
     test(`Deve retornar ${resultado.coresOrdenadas}`, () => {
-        console.log("entrou no teste")
         expect(processarCores(esperado)).toEqual(resultado);
     })
 })
