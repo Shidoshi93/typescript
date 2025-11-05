@@ -1,0 +1,13 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    // For tests we need actual JS emit (not declaration-only)
+    "emitDeclarationOnly": false,
+    // Keep modules as ESM for node ESM projects
+    "module": "esnext",
+    "target": "es2019",
+    "isolatedModules": false,
+    "verbatimModuleSyntax": false,
+    "moduleResolution": "node"
+  }
+}
