@@ -24,7 +24,6 @@ export const processarCores = (cores: Array<String>): cores => {
     }
 }
 
-// Runner interativo — só roda fora do ambiente de testes
 const runInteractive = (): void => {
     const entradas: Array<String> = new Array<String>();
     let contador: number = 0;
@@ -42,7 +41,6 @@ const runInteractive = (): void => {
     console.log("---Cores Ordenadas---\n");
     entradas.sort().map((item) => console.log(item));
 
-    // Mantido apenas por compatibilidade com execução normal
     processarCores(entradas);
 }
 
