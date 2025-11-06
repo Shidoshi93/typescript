@@ -1,4 +1,4 @@
-import readline from 'readline-sync'
+import { questionInt, question } from 'readline-sync'
 import { Queue } from '../utils/Queue.ts';
 import { naoExucutaReadLineSeEhTeste } from '../../config/teste.config.ts';
 
@@ -15,12 +15,11 @@ const mensagesMenu = [
     'Sair'
 ]
 
-const manipulaFila = (opcao: number, fila: Queue<string>): void => {
-    let nomeCliente: string = "";
+// mpassar um objeto como parâmentro
+export const manipulaFila = (opcao: number, nomeCliente: string, fila: Queue<string>): Queue<string> => {
 
     switch (opcao) {
         case opcoesMenu.ADICIONAR_CLIENTE:
-            nomeCliente = readline.question("Informe o nome do cliente: ");
             fila.enqueue(nomeCliente);
             console.log(`\nCliente ${nomeCliente} adicionado!\n`);
             break;
@@ -31,8 +30,7 @@ const manipulaFila = (opcao: number, fila: Queue<string>): void => {
             break;
 
         case opcoesMenu.REMOVER_CLIENTE:
-            fila.dequeue();
-            console.log(`Cliente ${nomeCliente} foi chamado.\n`);
+            if (fila.dequeue() !== undefined) console.log(`Cliente ${nomeCliente} foi chamado.\n`);
             break;
 
         case opcoesMenu.SAIR:
@@ -44,11 +42,14 @@ const manipulaFila = (opcao: number, fila: Queue<string>): void => {
         default:
             opcao !== 0 ? console.log("Opção inválida") : null;
     }
+
+    return fila;
 }
 
 const menu = (): void => {
     const filaBanco: Queue<string> = new Queue<string>();
-    let opcao: number | undefined = undefined;
+    let opcao: number;
+    let nomeCliente: string = "";
 
     do {
         console.log("****************************************************");
@@ -60,14 +61,18 @@ const menu = (): void => {
         })
         console.log("\n****************************************************");
 
-        opcao = readline.questionInt("Entre com a opção desejada: ",
+        opcao = questionInt("Entre com a opção desejada: ",
             {
                 limit: /^\d+$/, // validando se o input foi numérico
                 limitMessage: "Digite um número, por favor."
             }
         );
 
-        manipulaFila(opcao, filaBanco);
+        if (opcao === opcoesMenu.ADICIONAR_CLIENTE) { 
+            nomeCliente = question("Informe o nome do cliente: ");
+        }
+
+        manipulaFila(opcao, nomeCliente, filaBanco);
 
     } while (opcao !== opcoesMenu.SAIR);
 }
