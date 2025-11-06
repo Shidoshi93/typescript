@@ -1,4 +1,4 @@
-import readline from 'readline-sync'
+import { question, questionInt } from 'readline-sync'
 import { Stack } from '../utils/Stack.ts';
 import { naoExucutaReadLineSeEhTeste } from '../../config/teste.config.ts';
 
@@ -15,12 +15,10 @@ const mensagesMenu = [
     '0 - Sair'
 ]
 
-const manipulaPilha = (opcao: number, pilha: Stack<string>): void => {
-    let nomeLivro: string = "";
-
+// passar um objeto como parâmentro
+export const manipulaPilha = (opcao: number, nomeLivro: string, pilha: Stack<string>): Stack<string> => {
     switch (opcao) {
         case opcoesMenu.ADICIONAR_LIVRO:
-            nomeLivro = readline.question("Informe o nome do livro: ");
             pilha.push(nomeLivro);
             console.log(`\nLivro ${nomeLivro} adicionado!\n`);
             break;
@@ -31,8 +29,7 @@ const manipulaPilha = (opcao: number, pilha: Stack<string>): void => {
             break;
 
         case opcoesMenu.REMOVER_LIVROS:
-            pilha.pop();
-            console.log(`O livro ${nomeLivro} foi retirado da pilha.`);
+            if (pilha.pop() !== undefined) console.log(`O livro ${nomeLivro} foi retirado da pilha.`);
             break;
 
         case opcoesMenu.SAIR:
@@ -44,11 +41,14 @@ const manipulaPilha = (opcao: number, pilha: Stack<string>): void => {
         default:
             opcao !== 0 ? console.log("Opção inválida") : null;
     }
+
+    return pilha;
 }
 
 const menu = (): void => {
     const pilhaLivros: Stack<string> = new Stack<string>();
     let opcao: number | undefined = undefined;
+    let nomeLivro: string = "";
 
     do {
         console.log("****************************************************");
@@ -56,14 +56,18 @@ const menu = (): void => {
         mensagesMenu.map((item) => console.log(item))
         console.log("\n****************************************************");
 
-        opcao = readline.questionInt("Entre com a opção desejada: ",
+        opcao = questionInt("Entre com a opção desejada: ",
             {
                 limit: /^\d+$/, // validando se o input foi numérico
                 limitMessage: "Digite um número, por favor."
             }
         );
 
-        manipulaPilha(opcao, pilhaLivros);
+        if (opcao === opcoesMenu.ADICIONAR_LIVRO) { 
+                    nomeLivro = question("Informe o nome do cliente: ");
+                }
+
+        manipulaPilha(opcao,nomeLivro, pilhaLivros);
 
     } while (opcao !== opcoesMenu.SAIR);
 }
