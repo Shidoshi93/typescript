@@ -15,7 +15,7 @@ const mensagesMenu = [
     'Sair'
 ]
 
-// mpassar um objeto como parâmentro
+// passar um objeto como parâmentro
 export const manipulaFila = (opcao: number, nomeCliente: string, fila: Queue<string>): Queue<string> => {
 
     switch (opcao) {
